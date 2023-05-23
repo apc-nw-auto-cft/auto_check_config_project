@@ -11,15 +11,16 @@ sequenceDiagram
   participant sb as staging branch
   actor reviewer
   participant mb as main branch
+  participant bf as batfish
   participant prod_repo as production repo
   participant prod_repo_ac as github actions(production)
   participant devlab as Juniper vlab develop
   participant prolab as Juniper vlab production
-  participant bf as batfish
+  participant config_repo as config management repo
   developer->>ib: push config
   issue_ac->>bf: lint config
   issue_ac->>devlab: previous check(show conf, show int,,,)
-  issue_ac->>prod_repo: pull latest config
+  issue_ac->>config_repo: pull latest config
   issue_ac->>issue_ac: inspect
   issue_ac->>devlab: commit
   issue_ac->>devlab: post check
@@ -32,17 +33,18 @@ sequenceDiagram
   prod_repo_ac->>prod_lab: commit
   prod_repo_ac->>prod_lab: post check
   prod_repo_ac->>prod_repo_ac: inspect
-  prod_repo_ac->>prod_repo: put actual config to config managing directory 
+  prod_repo_ac->>config_repo: push latest config
 
 ```
 
 ## phase01
+
 ```mermaid
 sequenceDiagram
   autonumber
   actor developer
   participant mb as main branch
-  participant ac as github actions(issue)
+  participant ac as github actions
   participant devlab as Juniper vlab develop
   developer->>mb: push config
   ac->>devlab: previous check(show conf, show int,,,)
