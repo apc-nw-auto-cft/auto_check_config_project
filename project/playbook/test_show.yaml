@@ -1,0 +1,19 @@
+---
+- name: "test show"
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: "debug"
+      ansible.builtin.debug:
+        var: inventory_hostname
+
+    - name: "test show"
+      junipernetworks.junos.junos_command:
+        commands: "show version"
+      register: result
+
+    - name: "debug"
+      ansible.builtin.debug:
+        var: result.stdout_lines
+
