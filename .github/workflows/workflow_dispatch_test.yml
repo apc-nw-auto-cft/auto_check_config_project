@@ -34,7 +34,7 @@ jobs:
 
       - name: docker run
         run: |
-          docker run --rm -d --name runner -v ./:/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
+          docker run --rm -d --name runner -v $(echo pwd)/:/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
 
       - name: docker exec
         run: docker exec runner ansible-playbook test.yml
