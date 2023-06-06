@@ -31,7 +31,7 @@ jobs:
 
       - name: docker run
         run: |
-          docker run --rm -d --name runner -v .:/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
+          docker run --rm -d --name runner -v $(pwd):/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
 
       - name: docker ps
         run: docker ps
