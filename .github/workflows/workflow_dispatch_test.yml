@@ -1,5 +1,5 @@
 name: GitHub Ansible Test
-run-name: ${{ github.actor }} is testing out GitHub Actions :rocket:
+run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [workflow_dispatch, push]
 jobs:
   ansible_in_docker:
