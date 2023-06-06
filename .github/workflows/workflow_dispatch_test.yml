@@ -1,6 +1,6 @@
 name: GitHub Ansible Test
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: workflow_dispatch
+on: [workflow_dispatch, push]
 jobs:
   ansible_in_docker:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
       
       - name: cat file
-        run: cat README.md
+        run: cat test.yml
 
       - name: docker pull
         run: docker pull quay.io/ansible/ansible-runner:stable-2.12-devel
@@ -29,12 +29,18 @@ jobs:
       - name: docker images
         run: docker images
 
+      - name: docker run
+        run: |
+          docker run --rm -d --name runner -v .:/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
+
       - name: docker ps
         run: docker ps
 
-      - name: docker run
-        run: |
-          docker run --rm -d --name runner -v $(echo pwd):/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
+      - name: docker exec ls
+        run: docker exec runner ls
+
+      - name: docker exec ls
+        run: docker exec runner cat test.yml
 
       - name: docker exec
         run: docker exec runner ansible-playbook test.yml
