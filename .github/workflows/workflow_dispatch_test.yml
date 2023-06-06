@@ -4,6 +4,7 @@ on: workflow_dispatch
 jobs:
   cat_file_test:
     runs-on: ubuntu-latest
+    container: quay.io/ansible/ansible-runner:stable-2.12-devel
     steps:
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -21,3 +22,16 @@ jobs:
       
       - name: cat file
         run: cat README.md
+
+      - name: docker images
+        run: docker images
+
+      - name: docker ps
+        run: docker ps
+
+      - name: docker run
+        run: |
+          docker run --rm -d --name runner -v ./:/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
+
+      - name: docker exec
+        run: docker exec runner ansible-playbook test.yml
