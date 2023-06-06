@@ -2,9 +2,9 @@ name: GitHub Ansible Test
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: workflow_dispatch
 jobs:
-  cat_file_test:
+  ansible_in_docker:
     runs-on: ubuntu-latest
-    container: quay.io/ansible/ansible-runner:stable-2.12-devel
+    # container: quay.io/ansible/ansible-runner:stable-2.12-devel
     steps:
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -22,6 +22,9 @@ jobs:
       
       - name: cat file
         run: cat README.md
+
+      - name: docker pull
+        run: docker pull quay.io/ansible/ansible-runner:stable-2.12-devel
 
       - name: docker images
         run: docker images
