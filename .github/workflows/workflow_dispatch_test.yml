@@ -6,17 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     # container: quay.io/ansible/ansible-runner:stable-2.12-devel
     steps:
-      # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      # - name: Check out repository code
-      #   uses: actions/checkout@v3
-      # - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      # - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      # - name: List files in the repository
-      #   run: |
-      #     ls ${{ github.workspace }}
-      # - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: checkout code
         uses: actions/checkout@v3
       
@@ -31,16 +20,4 @@ jobs:
 
       - name: docker run
         run: |
-          docker run --rm -d --name runner -v $(pwd):/runner quay.io/ansible/ansible-runner:stable-2.12-devel sleep infinity
-
-      - name: docker ps
-        run: docker ps
-
-      - name: docker exec ls
-        run: docker exec runner ls
-
-      - name: docker exec ls
-        run: docker exec runner cat test.yml
-
-      - name: docker exec
-        run: docker exec runner ansible-playbook test.yml
+          docker run --rm -v $(pwd):/runner quay.io/ansible/ansible-runner:stable-2.12-devel ansible-playbook test.yml
