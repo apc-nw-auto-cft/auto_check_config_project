@@ -1,0 +1,15 @@
+name: ping test
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: workflow_dispatch
+jobs:
+  ansible_in_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      
+      - name: ping01
+        run: ping 35.77.195.143 -c 4
+
+      - name: ping02
+        run: ping 35.77.195.143 -c 4
