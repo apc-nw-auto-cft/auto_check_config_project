@@ -10,6 +10,7 @@ packages = [{include = "ansible_jvlab"}]
 python = "^3.9"
 ansible-core = "<2.15.0"
 ncclient = "^0.6.13"
+ansible-builder = "^3.0.0"
 
 
 [build-system]

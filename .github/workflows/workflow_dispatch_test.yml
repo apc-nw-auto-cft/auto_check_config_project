@@ -27,11 +27,11 @@ jobs:
         run: cat test.yml
 
       - name: docker pull
-        run: docker pull kaiuchida/ansible-execution-env
+        run: docker pull kaiuchida/ansible-execution-env:1.0
 
       - name: docker images
         run: docker images
 
       - name: docker run
         run: |
-          docker run --rm -v $(pwd):/runner kaiuchida/ansible-execution-env ansible-playbook test.yml
+          docker run --rm -v $(pwd):/runner kaiuchida/ansible-execution-env:1.0 ansible-playbook test.yml
