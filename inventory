@@ -1,0 +1,13 @@
+---
+all:
+  children:
+    junos:
+      hosts:
+        junos01:
+          ansible_host: 66.129.234.213
+          ansible_port: 46000
+      vars:
+        ansible_network_os: junipernetworks.junos.junos
+        ansible_connection: ansible.netcommon.netconf
+        ansible_password: "Juniper!1"
+        ansible_user: "jcluser"
