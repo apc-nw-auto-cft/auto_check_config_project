@@ -25,6 +25,9 @@ jobs:
       - name: cat file
         run: cat test.yml
 
+      - name: curl
+        run: curl 66.129.234.214:38001
+
       - name: docker pull
         run: docker pull kaiuchida/ansible-execution-env:1.0
 
@@ -35,6 +38,10 @@ jobs:
         run: |
           docker run --name ansible_container -d  -v $(pwd):/runner kaiuchida/ansible-execution-env:1.0 sleep infinity
 
-      - name: docker exec
+      - name: docker exec curl
+        run: |
+          docker exec ansible_container curl 66.129.234.214:38001
+
+      - name: docker exec ansible
         run: |
           docker exec ansible_container ansible-playbook -i inventory junos_test.yml
