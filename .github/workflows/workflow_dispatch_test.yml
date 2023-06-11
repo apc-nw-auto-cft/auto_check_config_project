@@ -22,8 +22,12 @@ jobs:
       - name: check my ip
         run: curl http://inet-ip.info/
 
-      - name: check my ip
-        run: sleep 120
+      - name: approval
+        environment: test
+        run: echo "waiting approval"
+
+      # - name: sleep
+      #   run: sleep 120
 
       - name: checkout code
         uses: actions/checkout@v3
