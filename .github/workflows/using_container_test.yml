@@ -30,4 +30,4 @@ jobs:
         run: cat test.yml
 
       - name: ansible test
-        run: ansible-playbook -i inventory junos_test.yml
+        run: ansible-playbook -i inventory junos_test.yml -vvvvv
