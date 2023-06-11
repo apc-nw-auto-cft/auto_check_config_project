@@ -1,17 +1,8 @@
 ---
 - name: "test"
-  hosts: junos
+  hosts: localhost
   gather_facts: false
   tasks:
     - name: "debug test"
       ansible.builtin.debug:
         msg: "hello"
-
-    - name: "get show version"
-      junipernetworks.junos.junos_command:
-        commands: "show version"
-      register: res_show
-
-    - name: "debug res_show"
-      ansible.builtin.debug:
-        var: res_show
