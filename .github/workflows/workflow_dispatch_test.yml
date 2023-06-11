@@ -1,6 +1,6 @@
 name: GitHub Ansible Test
 run-name: ${{ github.actor }} is testing out GitHub Actions
-on: [workflow_dispatch, push]
+on: [workflow_dispatch]
 jobs:
   check_my_ip:
     runs-on: ubuntu-latest
