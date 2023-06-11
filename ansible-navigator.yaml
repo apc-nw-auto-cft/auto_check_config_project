@@ -1,0 +1,41 @@
+---
+ansible-navigator:
+
+  ansible:
+    config:
+      help: False
+      path: ./ansible.cfg
+    inventory:
+      help: False
+      entries:
+        - ./inventory
+    playbook:
+      help: False
+
+  # ansible-lint:
+  #   config: ~/ansible-lint.yml
+  #   lintables: ~/myproject/
+
+  ansible-runner:
+    artifact-dir: ./artifact
+    rotate-artifacts-count: 10
+    timeout: 300
+    job-events: False
+
+  app: run
+
+  execution-environment:
+    container-engine: docker
+    enabled: True
+    image: kaiuchida/ansible-execution-env:1.0
+    pull:
+      arguments:
+        - "--tls-verify=false"
+      policy: missing
+
+  playbook-artifact:
+    enable: False
+
+  mode: stdout
+
+  time-zone: Japan
