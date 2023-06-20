@@ -1,0 +1,9 @@
+---
+- name: "test"
+  hosts: junos
+  gather_facts: false
+  tasks:
+    - name: "debug test"
+      ansible.builtin.debug:
+        msg: "hello"
+      run_once: true
