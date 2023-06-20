@@ -35,7 +35,7 @@ jobs:
       - name: connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
-          command: ansible-playbook -i inventory connectivity_check.yml
+          command: ansible-playbook -i inventory junos_test.yml --tags "connectivity_check"
           max_attempts: 5
           retry_interval: 5
       
