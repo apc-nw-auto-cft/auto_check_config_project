@@ -26,17 +26,18 @@ jobs:
       - name: check my ip
         run: curl http://inet-ip.info/
 
+      - name: checkout code
+        uses: actions/checkout@v3
+
       # - name: sleep
       #   run: sleep 60
 
-      - uses: corrupt952/retry-command@v1.0.7
+      - name: connectivity_check
+        uses: corrupt952/retry-command@v1.0.7
         with:
           command: ansible-playbook -i inventory connectivity_check.yml
-          max_attempts: 10
+          max_attempts: 5
           retry_interval: 5
-
-      - name: checkout code
-        uses: actions/checkout@v3
       
       - name: cat file
         run: cat test.yml

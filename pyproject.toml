@@ -12,6 +12,8 @@ ansible-core = "<2.15.0"
 ncclient = "^0.6.13"
 ansible-builder = "^3.0.0"
 ansible-navigator = "^3.3.1"
+requests = "^2.31.0"
+netaddr = "^0.8.0"
 
 
 [build-system]
