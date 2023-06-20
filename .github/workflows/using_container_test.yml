@@ -29,7 +29,7 @@ jobs:
       # - name: sleep
       #   run: sleep 60
 
-      - uses: corrupt952/retry-command@v1
+      - uses: corrupt952/retry-command@v1.0.7
         with:
           command: ansible-playbook -i inventory connectivity_check.yml
           max_attempts: 10
