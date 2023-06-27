@@ -3,18 +3,19 @@ all:
   children:
     junos:
       hosts:
-        junos01:
-          ansible_host: 66.129.234.213
-          ansible_port: 43005
-        junos01:
-          ansible_host: 66.129.234.213
-          ansible_port: 43008
-        junos01:
-          ansible_host: 66.129.234.213
-          ansible_port: 43011
-        junos01:
-          ansible_host: 66.129.234.213
-          ansible_port: 43014 
+        junos:
+          VMX01:
+            ansible_host: 66.129.234.213
+            ansible_port: 43005
+          VMX02:
+            ansible_host: 66.129.234.213
+            ansible_port: 43008
+          VMX03:
+            ansible_host: 66.129.234.213
+            ansible_port: 43011
+          VMX04:
+            ansible_host: 66.129.234.213
+            ansible_port: 43014 
       vars:
         ansible_network_os: junipernetworks.junos.junos
         ansible_connection: ansible.netcommon.netconf
