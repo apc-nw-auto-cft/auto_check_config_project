@@ -1,5 +1,5 @@
 ---
-name: using container
+name: test ospf
 run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [workflow_dispatch]
 jobs:
