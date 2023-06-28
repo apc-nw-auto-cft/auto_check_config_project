@@ -1,0 +1,46 @@
+---
+name: using container
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on: [workflow_dispatch]
+jobs:
+  # check_my_ip:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: check my ip
+  #       run: curl http://inet-ip.info/
+
+  # approval:
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: test
+  #   steps:
+  #     - run: echo "waiting approval"
+
+  ansible_in_docker:
+    runs-on: ubuntu-latest
+    # needs: approval
+    container:
+      image: kaiuchida/ansible-execution-env:1.0
+      options: --user root
+    steps:
+      - name: check my ip
+        run: curl http://inet-ip.info/
+
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      # - name: sleep
+      #   run: sleep 60
+
+      - name: connectivity_check
+        uses: corrupt952/retry-command@v1.0.7
+        with:
+          command: ansible-playbook -i inventory junos_check_ospf.yml --tags "check_route"
+          max_attempts: 5
+          retry_interval: 5
+      
+      # - name: cat file
+      #   run: cat test.yml
+
+      - name: ansible test
+        run: ansible-playbook -i inventory junos_check_ospf.yml

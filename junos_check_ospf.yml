@@ -1,14 +1,14 @@
 ---
-- name: "test"
+- name: "before ospf route"
   hosts: junos
   gather_facts: false
   tasks:
-    - name: "get show version"
+    - name: "get show route ospf"
       junipernetworks.junos.junos_command:
-        commands: "show route protcol ospf"
+        commands: "show route protocol ospf"
       register: res_show
       tags:
-        - connectivity_check
+        - check_route
 
     - name: "debug res_show"
       ansible.builtin.debug:

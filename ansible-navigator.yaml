@@ -29,9 +29,10 @@ ansible-navigator:
     enabled: True
     image: kaiuchida/ansible-execution-env:1.0
     pull:
-      arguments:
-        - "--tls-verify=false"
-      policy: missing
+      policy: always
+      # arguments:
+      #   - "--tls-verify=false"
+      # policy: missing
 
   playbook-artifact:
     enable: False

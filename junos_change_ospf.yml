@@ -1,0 +1,18 @@
+---
+- name: "change ospf route"
+  hosts: VMX01,VMX02
+  gather_facts: false
+  tasks:
+    - name: "change ospf metric"
+      junipernetworks.junos.junos_config:
+        lines:
+        - set protocols ospf area 0.0.0.0 interface ge-0/0/0.0 metric 100
+      tags:
+        - check_ospf
+    #   register: res_show
+    #   tags:
+    #     - connectivity_check
+
+    # - name: "debug res_show"
+    #   ansible.builtin.debug:
+    #     var: res_show
