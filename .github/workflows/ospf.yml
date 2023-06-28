@@ -42,5 +42,11 @@ jobs:
       # - name: cat file
       #   run: cat test.yml
 
-      - name: ansible test
+      - name: ansible before
+        run: ansible-playbook -i inventory junos_check_ospf.yml
+
+      - name: ansible change
+        run: ansible-playbook -i inventory junos_change_ospf.yml
+
+      - name: ansible after
         run: ansible-playbook -i inventory junos_check_ospf.yml
