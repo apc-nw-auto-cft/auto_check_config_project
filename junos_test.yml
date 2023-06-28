@@ -5,7 +5,7 @@
   tasks:
     - name: "get show version"
       junipernetworks.junos.junos_command:
-        commands: "show route protcol ospf"
+        commands: "show version"
       register: res_show
       tags:
         - connectivity_check
