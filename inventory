@@ -14,7 +14,7 @@ all:
           ansible_port: 49011
         VMX04:
           ansible_host: 66.129.234.212
-          ansible_port: 49014 
+          ansible_port: 49014
       vars:
         ansible_network_os: junipernetworks.junos.junos
         ansible_connection: ansible.netcommon.netconf

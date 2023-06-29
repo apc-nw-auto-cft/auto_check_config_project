@@ -15,12 +15,12 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      # - name: connectivity_check
-      #   uses: corrupt952/retry-command@v1.0.7
-      #   with:
-      #     command: ansible-playbook -i inventory junos_check_ospf.yml --tags "check_route"
-      #     max_attempts: 5
-      #     retry_interval: 5
+      - name: connectivity_check
+        uses: corrupt952/retry-command@v1.0.7
+        with:
+          command: ansible-playbook -i inventory junos_check_ospf.yml --tags "check_route"
+          max_attempts: 5
+          retry_interval: 5
       
       - name: ansible before
         run: ansible-playbook -i inventory junos_check_ospf.yml
