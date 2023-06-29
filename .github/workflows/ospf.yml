@@ -21,12 +21,6 @@ jobs:
           command: ansible-playbook -i inventory junos_check_ospf.yml --tags "check_route"
           max_attempts: 5
           retry_interval: 5
-      
-      - name: ansible before
-        run: ansible-playbook -i inventory junos_check_ospf.yml
 
-      - name: ansible change
+      - name: ansible ospf
         run: ansible-playbook -i inventory junos_change_ospf.yml
-
-      - name: ansible after
-        run: ansible-playbook -i inventory junos_check_ospf.yml
