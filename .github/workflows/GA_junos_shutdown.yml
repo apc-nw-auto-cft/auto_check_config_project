@@ -1,5 +1,5 @@
 ---
-name: using container
+name: junos_shutdown
 run-name: ${{ github.actor }} is exec junos_shutdown
 on: [workflow_dispatch]
 jobs:
