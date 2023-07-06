@@ -1,0 +1,17 @@
+---
+- name: "get route"
+  junipernetworks.junos.junos_command:
+    commands: "show route {{ peer_loopback }}"
+    display: json
+  register: res_show
+  when: inventory_hostname in ['VMX01','VMX02']
+
+- name: set_fact
+  set_fact:
+    via_IF: "{{ res_show.stdout[0]['route-information'][0]['route-table'][0]['rt'][0]['rt-entry'][0]['nh'][0]['via'][0]['data'] }}"
+  when: inventory_hostname in ['VMX01','VMX02']
+
+- name: "debug res_show"
+  ansible.builtin.debug:
+    msg: "{{ via_IF }}"
+  when: inventory_hostname in ['VMX01','VMX02']

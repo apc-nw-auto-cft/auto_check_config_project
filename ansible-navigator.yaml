@@ -29,7 +29,7 @@ ansible-navigator:
     enabled: True
     image: kaiuchida/ansible-execution-env:1.0
     pull:
-      policy: always
+      policy: missing
       # arguments:
       #   - "--tls-verify=false"
       # policy: missing
