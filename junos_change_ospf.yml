@@ -3,9 +3,16 @@
   hosts: junos
   gather_facts: false
   tasks:
+
+    - name: "set fact"
+      ansible.builtin.set_fact:
+        operation: "{{ bypass_or_back }}"
+
     - name: "get before route"
       import_role: 
         name: show_route
+      vars:
+
 
     - name: assert res_show
       ansible.builtin.assert:

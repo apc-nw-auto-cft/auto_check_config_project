@@ -1,0 +1,8 @@
+---
+- name: "change ospf route"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "call vars_test"
+      import_role: 
+        name: vars_test
