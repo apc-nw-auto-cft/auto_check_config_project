@@ -5,19 +5,22 @@
   tasks:
     - name: "before route ospf"
       junipernetworks.junos.junos_command:
-        commands: "show route protocol ospf"
+        commands: "show route {{ peer_loopback }}"
+      # loop: 
+      #   - "10.100.100.1/32"
+      #   - "10.100.100.2/32"
       register: res_show
-      tags:
-        - check_route
+      when: inventory_hostname in ['VMX01','VMX02']
 
     - name: "debug res_show"
       ansible.builtin.debug:
-        var: res_show
+        msg: "{{ res_show.stdout_lines[0] }}"
+      when: inventory_hostname in ['VMX01','VMX02']
 
-    - name: "interface disable"
-      junipernetworks.junos.junos_config:
-        lines:
-        - set interfaces ge-0/0/1 disable
+    # - name: "interface disable"
+    #   junipernetworks.junos.junos_config:
+    #     lines:
+    #     - set interfaces ge-0/0/1 disable
 
     - name: "change ospf metric"
       junipernetworks.junos.junos_config:
@@ -27,9 +30,14 @@
 
     - name: "after route ospf"
       junipernetworks.junos.junos_command:
-        commands: "show route protocol ospf"
+        commands: "show route {{ peer_loopback }}"
+      # loop: 
+      #   - "10.100.100.1/32"
+      #   - "10.100.100.2/32"
       register: res_show
+      when: inventory_hostname in ['VMX01','VMX02']
 
     - name: "debug res_show"
       ansible.builtin.debug:
-        var: res_show
+        msg: "{{ res_show.stdout_lines[0] }}"
+      when: inventory_hostname in ['VMX01','VMX02']

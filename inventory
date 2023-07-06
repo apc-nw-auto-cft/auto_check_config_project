@@ -6,9 +6,11 @@ all:
         VMX01:
           ansible_host: 66.129.234.213
           ansible_port: 48005
+          peer_loopback: 10.100.100.2
         VMX02:
           ansible_host: 66.129.234.213
           ansible_port: 48008
+          peer_loopback: 10.100.100.1
         VMX03:
           ansible_host: 66.129.234.213
           ansible_port: 48011
