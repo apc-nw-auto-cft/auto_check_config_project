@@ -11,7 +11,7 @@
 
     - name: "set fact"
       ansible.builtin.set_fact:
-        operation: "{{ bypass }}"
+        operation: "{{ back }}"
       run_once: true
 
     - name: "connectivity_check"
