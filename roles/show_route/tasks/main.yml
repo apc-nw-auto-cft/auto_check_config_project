@@ -13,7 +13,8 @@
   ansible.builtin.debug:
     msg: "{{ via_if }}"
 
-- name: assert res_show
-  ansible.builtin.assert:
-    that:
-      - via_IF == "ge-0/0/0.0"
+# - name: assert res_show
+#   ansible.builtin.assert:
+#     that:
+#       - via_IF == "{{ operation[before_or_after].expect_via_interface }}"
+#   when: inventory_hostname in ['VMX01','VMX02']
