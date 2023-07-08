@@ -1,6 +1,6 @@
 ---
-name: junos_change_ospf
-run-name: ${{ github.actor }} is exec junos_change_ospf
+name: junos_ospf_bypass
+run-name: ${{ github.actor }} is exec junos_ospf_bypass
 on: 
   push:
     paths:
@@ -40,12 +40,12 @@ jobs:
       - name: connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
-          command: ansible-playbook -i inventory junos_noshutdown.yml --tags "connectivity_check"
+          command: ansible-playbook -i inventory junos_ospf_bypass.yml --tags "connectivity_check"
           max_attempts: 5
           retry_interval: 5
       
       - name: cat file
         run: cat test.yml
 
-      - name: run junos_change_ospf.yml
-        run: ansible-playbook -i inventory junos_change_ospf.yml
+      - name: run junos_ospf_bypass.yml
+        run: ansible-playbook -i inventory junos_ospf_bypass.yml

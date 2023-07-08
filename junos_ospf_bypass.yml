@@ -11,12 +11,8 @@
 
     - name: "set fact"
       ansible.builtin.set_fact:
-        operation: "{'bypass_or_back':'{{ bypass }}' }"
+        operation: "{{ bypass }}"
       run_once: true
-
-    - name: "show fact"
-      ansible.builtin.debug:
-        msg: "{{ operation }}"
 
     - name: "get before route"
       import_role: 
