@@ -13,6 +13,9 @@
       ansible.builtin.set_fact:
         operation: "{{ bypass }}"
       run_once: true
+      tags:
+        - connectivity_check
+
 
     - name: "get before route"
       import_role: 
