@@ -3,7 +3,7 @@
 #   ansible.builtin.debug:
 #     var: expect[inventory_hostname]
 
-- name: "debug vars"
+- name: "debug show command"
   ansible.builtin.debug:
     msg: "{{ item.command }}"
   loop: "{{ expect[inventory_hostname] }}"
@@ -29,10 +29,13 @@
     label: " "
   register: res_xml
 
-- name: "debug res_show"
+- name: "debug parsed xml"
   ansible.builtin.debug:
-    msg:
-      - "{{ item.matches[0] }}"
+    msg: 
+      - "command: {{ item.item.item.command }}"
+      - "element: {{ item.item.item.element }}"
+      - "expect: {{ item.item.item.result[before_or_after] }}"
+      - "actual: {{ item.matches[0][item.item.item.element] | trim }}"
   loop: "{{ res_xml.results }}"
   loop_control:
     label: " "
