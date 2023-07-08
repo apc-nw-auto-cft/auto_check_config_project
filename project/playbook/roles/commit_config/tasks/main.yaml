@@ -1,0 +1,12 @@
+---
+- name: "set path"
+  ansible.builtin.set_fact:
+    path: "~/auto_check_config_project/project/config/{{ inventory_hostname }}/config"
+
+- name: "debug config"
+  ansible.builtin.debug:
+    msg: "{{ lookup('ansible.builtin.file', path) }}"
+
+- name: "commit config"
+  junipernetworks.junos.junos_config:
+    src: "{{ path }}"

@@ -1,0 +1,28 @@
+---
+- name: "test show"
+  hosts: junos
+  gather_facts: false
+
+  tasks:
+    - name: "block to share condition"
+      vars:
+        target_hosts:
+          - "vmx01"
+          - "vmx02"
+      when: inventory_hostname in target_hosts
+      block:
+        - name: "import inspect"
+          ansible.builtin.import_role:
+            name: inspect
+          vars:
+            before_or_after: before
+
+        - name: "import commit_config"
+          ansible.builtin.import_role:
+            name: commit_config
+
+        - name: "import inspect"
+          ansible.builtin.import_role:
+            name: inspect
+          vars:
+            before_or_after: after

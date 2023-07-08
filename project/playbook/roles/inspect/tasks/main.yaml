@@ -1,0 +1,47 @@
+---
+# - name: "debug vars"
+#   ansible.builtin.debug:
+#     var: expect[inventory_hostname]
+
+- name: "debug vars"
+  ansible.builtin.debug:
+    msg: "{{ item.command }}"
+  loop: "{{ expect[inventory_hostname] }}"
+  loop_control:
+    label: " "
+
+- name: "get show"
+  junipernetworks.junos.junos_command:
+    commands: "{{ item.command }}"
+    display: xml
+  register: res_show
+  loop: "{{ expect[inventory_hostname] }}"
+  loop_control:
+    label: " "
+
+- name: "parse xml"
+  community.general.xml:
+    xmlstring: "{{ item.stdout[0] }}"
+    xpath: "//{{ item.item.element }}"
+    content: text
+  loop: "{{ res_show.results }}"
+  loop_control:
+    label: " "
+  register: res_xml
+
+- name: "debug res_show"
+  ansible.builtin.debug:
+    msg:
+      - "{{ item.matches[0] }}"
+  loop: "{{ res_xml.results }}"
+  loop_control:
+    label: " "
+
+- name: "assert"
+  ansible.builtin.assert:
+    that:
+      item.matches[0][item.item.item.element] | trim == item.item.item.result[before_or_after]
+    quiet: true
+  loop: "{{ res_xml.results }}"
+  loop_control:
+    label: " "

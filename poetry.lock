@@ -209,6 +209,14 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "jmespath"
+version = "1.0.1"
+description = "JSON Matching Expressions"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "jsonschema"
 version = "4.17.3"
 description = "An implementation of JSON Schema validation for Python"
@@ -225,6 +233,14 @@ format = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validat
 format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3986-validator (>0.1.0)", "uri-template", "webcolors (>=1.11)"]
 
 [[package]]
+name = "jxmlease"
+version = "1.0.3"
+description = "jxmlease converts between XML and intelligent Python data structures."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "lockfile"
 version = "0.12.2"
 description = "Platform-independent file locking module"
@@ -234,7 +250,7 @@ python-versions = "*"
 
 [[package]]
 name = "lxml"
-version = "4.9.2"
+version = "4.9.3"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
 category = "main"
 optional = false
@@ -244,7 +260,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
 htmlsoup = ["beautifulsoup4"]
-source = ["Cython (>=0.29.7)"]
+source = ["Cython (>=0.29.35)"]
 
 [[package]]
 name = "markupsafe"
@@ -498,7 +514,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "cd17de2c22e097e1b8d096ea9b2e97eb625a7c8e0b3eabcd91a1f3c305641ba9"
+content-hash = "be2f4596ee98dd915c155945a0253031bd5f92377af68f6fe81e37fcab402db0"
 
 [metadata.files]
 ansible-builder = []
@@ -517,7 +533,9 @@ docutils = []
 idna = []
 importlib-metadata = []
 jinja2 = []
+jmespath = []
 jsonschema = []
+jxmlease = []
 lockfile = []
 lxml = []
 markupsafe = []
