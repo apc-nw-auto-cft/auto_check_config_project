@@ -14,7 +14,6 @@
     - name: "debug res_show"
       ansible.builtin.debug:
         msg: "{{ res_show.stdout_lines[0][1] }}"
-      # when: res_show.stdout_lines[0][1] == "ge-0/0/1                up    up"
 
     - name: "conf ge-0/0/1"
       junipernetworks.junos.junos_interfaces:
