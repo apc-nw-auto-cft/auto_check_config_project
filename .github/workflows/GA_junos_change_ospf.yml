@@ -4,8 +4,8 @@ run-name: ${{ github.actor }} is exec junos_change_ospf
 on: 
   push:
     paths:
-      - '/device/VMX01/*'
-      - '/device/VMX02/*'
+      - 'device/VMX01/*'
+      - 'device/VMX02/*'
 
 jobs:
   ansible_in_docker:
