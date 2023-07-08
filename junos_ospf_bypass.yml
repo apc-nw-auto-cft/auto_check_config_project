@@ -13,9 +13,6 @@
       ansible.builtin.set_fact:
         operation: "{{ bypass }}"
       run_once: true
-      tags:
-        - connectivity_check
-
 
     - name: "get before route"
       import_role: 
@@ -23,6 +20,8 @@
       vars:
         before_or_after: before
       when: inventory_hostname in ['VMX01','VMX02']
+      tags:
+        - connectivity_check
 
     - name: "change ospf metric"
       junipernetworks.junos.junos_config:
