@@ -2,11 +2,6 @@
 - name: "test show"
   hosts: junos
   gather_facts: false
-  vars_prompt:
-    - name: path_to_material
-      prompt: "input path to material"
-      default: "~/auto_check_config_project/project/material/default"
-      private: false
 
   tasks:
     - name: "block to share condition"
@@ -14,12 +9,19 @@
         target_hosts:
           - "vmx01"
           - "vmx02"
+        path_to_material: "{{ playbook_dir }}/../material"
       when: inventory_hostname in target_hosts
       block:
-        - name: "include vars"
+        - name: "include_vars operation"
           ansible.builtin.include_vars:
-            file: "{{ path_to_material }}/expect"
+            file: "{{ path_to_material }}/operation.yaml"
+          delegate_to: localhost
+
+        - name: "include_vars expect"
+          ansible.builtin.include_vars:
+            file: "{{ path_to_material }}/{{ operation }}/expect.yaml"
             name: expect
+          delegate_to: localhost
 
         - name: "import inspect"
           ansible.builtin.import_role:

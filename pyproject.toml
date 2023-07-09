@@ -17,6 +17,7 @@ netaddr = "^0.8.0"
 jmespath = "^1.0.1"
 lxml = "^4.9.3"
 jxmlease = "^1.0.3"
+xmltodict = "^0.13.0"
 
 
 [build-system]
