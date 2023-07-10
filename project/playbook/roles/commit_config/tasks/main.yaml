@@ -1,0 +1,8 @@
+---
+- name: "debug config"
+  ansible.builtin.debug:
+    msg: "{{ lookup('ansible.builtin.file', config_path) }}"
+
+- name: "commit config"
+  junipernetworks.junos.junos_config:
+    src: "{{ config_path }}"

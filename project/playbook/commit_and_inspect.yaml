@@ -1,0 +1,50 @@
+---
+- name: "test show"
+  hosts: junos
+  gather_facts: false
+  vars:
+    path_to_material: "{{ playbook_dir }}/../material"
+
+  tasks:
+    - name: "include_vars operation"
+      ansible.builtin.include_vars:
+        file: "{{ path_to_material }}/operation.yaml"
+      delegate_to: localhost
+
+    - name: "include_vars expect"
+      ansible.builtin.include_vars:
+        file: "{{ path_to_material }}/{{ operation }}/expect.yaml"
+        name: expect
+      delegate_to: localhost
+
+    - name: "import inspect"
+      ansible.builtin.import_role:
+        name: inspect
+      vars:
+        before_or_after: before
+        show_target_hosts: "{{ expect.keys() }}"
+      when: 
+        - inventory_hostname in show_target_hosts
+
+    - name: "find files"
+      ansible.builtin.find:
+        paths: "{{ path_to_material }}/{{ operation }}/config"
+      register: filenames
+
+    - name: "import commit_config"
+      ansible.builtin.import_role:
+        name: commit_config
+      vars:
+        config_target_hosts: "{{ filenames.files | map(attribute='path') | map('basename') }}"
+        config_path: "{{ path_to_material }}/{{ operation }}/config/{{ inventory_hostname }}"
+      when:
+        - inventory_hostname in config_target_hosts
+
+    - name: "import inspect"
+      ansible.builtin.import_role:
+        name: inspect
+      vars:
+        before_or_after: after
+        show_target_hosts: "{{ expect.keys() }}"
+      when:
+        - inventory_hostname in show_target_hosts

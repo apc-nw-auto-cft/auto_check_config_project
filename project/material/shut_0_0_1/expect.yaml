@@ -1,0 +1,25 @@
+---
+vmx01:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: Null
+      after: "down"
+vmx02:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: Null
+      after: "down"
+vmx03:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: Null
+      after: "down"
+vmx04:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: Null
+      after: "down"

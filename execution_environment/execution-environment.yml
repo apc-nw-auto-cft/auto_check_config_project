@@ -15,8 +15,10 @@ dependencies:
       - community.general
   python:
     - ncclient
+    - jmespath
+    - lxml
   system:
-    - iputils-ping
+    - iputils
     - net-tools
   # system: bindep.txt
 
@@ -40,6 +42,5 @@ additional_build_steps:
   #   RUN whoami
   #   RUN cat /etc/os-release
   
-  # append_final:
-  #   - RUN echo This is a post-install command!
-  #   - RUN ls -la /etc
+  append_final:
+    - RUN ln -nfs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime 
