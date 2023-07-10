@@ -27,7 +27,7 @@ ansible-navigator:
   execution-environment:
     container-engine: docker
     enabled: True
-    image: kaiuchida/ansible-execution-env:1.0
+    image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.0
     pull:
       policy: missing
       # arguments:

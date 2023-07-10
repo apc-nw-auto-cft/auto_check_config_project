@@ -9,6 +9,7 @@
   loop: "{{ expect[inventory_hostname] }}"
   loop_control:
     label: " "
+  delegate_to: localhost
 
 - name: "get show"
   junipernetworks.junos.junos_command:
@@ -48,3 +49,5 @@
   loop: "{{ res_xml.results }}"
   loop_control:
     label: " "
+  when:
+    - item.item.item.result[before_or_after] != None

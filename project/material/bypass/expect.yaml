@@ -31,3 +31,15 @@ vmx02:
     result:
       before: "down"
       after: "down"
+vmx03:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: "down"
+      after: "down"
+vmx04:
+  - command: "show int terse ge-0/0/1"
+    element: oper-status
+    result:
+      before: "down"
+      after: "down"
