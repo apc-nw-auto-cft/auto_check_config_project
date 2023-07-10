@@ -15,8 +15,10 @@ dependencies:
       - community.general
   python:
     - ncclient
+    - lxml
+    - jxmlease
   system:
-    - iputils-ping
+    - iputils
     - net-tools
   # system: bindep.txt
 

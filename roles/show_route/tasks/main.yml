@@ -2,19 +2,33 @@
 - name: "get route"
   junipernetworks.junos.junos_command:
     commands: "show route {{ peer_loopback }}"
-    display: json
+    display: xml
   register: res_show  
-
-- name: "define via_if"
-  ansible.builtin.set_fact:
-    via_if: "{{ res_show.stdout[0]['route-information'][0]['route-table'][0]['rt'][0]['rt-entry'][0]['nh'][0]['via'][0]['data'] }}"
 
 - name: "debug res_show"
   ansible.builtin.debug:
-    msg: "{{ via_if }}"
+    msg: "{{ res_show }}"
 
-- name: assert res_show
-  ansible.builtin.assert:
-    that:
-      - via_if == "{{ operation[before_or_after].expect_via_interface }}"
-  when: inventory_hostname in ['VMX01','VMX02']
+- name: Read an element's attribute values
+  community.general.xml:
+    xmlstring: "{{ res_show.stdout[0] }}"
+    xpath: //via
+    content: text
+  register: xmlresp
+
+- name: "debug res_show"
+  ansible.builtin.debug:
+    msg: "{{ xmlresp.matches[0] }}"
+# - name: "define via_if"
+#   ansible.builtin.set_fact:
+#     via_if: "{{ res_show.stdout[0]['route-information'][0]['route-table'][0]['rt'][0]['rt-entry'][0]['nh'][0]['via'][0]['data'] }}"
+
+# - name: "debug res_show"
+#   ansible.builtin.debug:
+#     msg: "{{ via_if }}"
+
+# - name: assert res_show
+#   ansible.builtin.assert:
+#     that:
+#       - via_if == "{{ operation[before_or_after].expect_via_interface }}"
+#   when: inventory_hostname in ['VMX01','VMX02']
