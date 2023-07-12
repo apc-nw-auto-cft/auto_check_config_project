@@ -17,6 +17,7 @@ dependencies:
     - ncclient
     - lxml
     - jxmlease
+    - ansible-lint
   system:
     - iputils
     - net-tools
