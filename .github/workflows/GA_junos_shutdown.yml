@@ -23,7 +23,7 @@ jobs:
       image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       credentials:
         username: ${{ github.actor }}
-        password: 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
+        password: ${{ secrets.mytoken }}
       options: --user root
     steps:
       - name: check my ip
