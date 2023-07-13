@@ -45,12 +45,9 @@ jobs:
       - name: connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
-          command: ansible-playbook -i inventory junos_shutdown.yml --tags "connectivity_check"
+          command: ansible-playbook -i project/inventory/inventory.yaml project/playbook/connectivity_check.yml
           max_attempts: 5
           retry_interval: 5
-      
-      - name: cat file
-        run: cat test.yml
 
       - name: ansible test
-        run: ansible-playbook -i inventory junos_shutdown.yml
+        run: ansible-playbook -i project/inventory/inventory.yaml project/playbook/junos_shutdown.yml
