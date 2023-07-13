@@ -22,8 +22,8 @@ jobs:
     container:
       image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       credentials:
-        username: kojiro-kitamura
-        password: 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
+        username: ${{ github.actor }}
+        password: ${{ secrets.ghcr_token }}
       options: --user root
     steps:
       - name: check my ip
