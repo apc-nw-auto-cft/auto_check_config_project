@@ -16,4 +16,3 @@
     - name: "debug"
       ansible.builtin.debug:
         var: result.stdout_lines
-

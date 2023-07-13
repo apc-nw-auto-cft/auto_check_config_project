@@ -23,7 +23,7 @@
       vars:
         before_or_after: before
         show_target_hosts: "{{ expect.keys() }}"
-      when: 
+      when:
         - inventory_hostname in show_target_hosts
 
     - name: "find files"
