@@ -29,8 +29,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.ec2 }}
+          username: "uchida0411"
+          password: "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"
       
       - name: check my ip
         run: curl http://inet-ip.info/
