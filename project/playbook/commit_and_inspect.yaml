@@ -35,8 +35,11 @@
       ansible.builtin.import_role:
         name: commit
       vars:
-        commit_config_target_hosts: "{{ filenames.files | map(attribute='path') | map('basename') }}"
-        commit_config_path: "{{ path_to_material }}/{{ operation }}/config/{{ inventory_hostname }}"
+        commit_config_target_hosts: "\
+          {{ filenames.files | map(attribute='path') | map('basename') }}"
+        commit_config_path: "\
+          {{ path_to_material }}/{{ operation }}\
+          /config/{{ inventory_hostname }}"
       when:
         - inventory_hostname in commit_config_target_hosts
 

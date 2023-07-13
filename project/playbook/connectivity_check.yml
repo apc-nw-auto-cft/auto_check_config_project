@@ -1,8 +1,8 @@
 ---
-- name: "connectivity check"
+- name: "Connectivity check"
   hosts: junos
   gather_facts: false
   tasks:
-    - name: "get show version"
+    - name: "Get show version"
       junipernetworks.junos.junos_command:
         commands: "show interface ge-0/0/1 terse"

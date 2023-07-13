@@ -3,14 +3,14 @@ ansible-navigator:
 
   ansible:
     config:
-      help: False
+      help: false
       path: ./ansible.cfg
     inventory:
-      help: False
+      help: false
       entries:
         - ./inventory
     playbook:
-      help: False
+      help: false
 
   # ansible-lint:
   #   config: ~/ansible-lint.yml
@@ -20,13 +20,13 @@ ansible-navigator:
     artifact-dir: ./artifact
     rotate-artifacts-count: 10
     timeout: 300
-    job-events: False
+    job-events: false
 
   app: run
 
   execution-environment:
     container-engine: docker
-    enabled: True
+    enabled: true
     image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
     pull:
       policy: missing
@@ -35,7 +35,7 @@ ansible-navigator:
       # policy: missing
 
   playbook-artifact:
-    enable: False
+    enable: false
 
   mode: stdout
 

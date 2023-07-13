@@ -20,7 +20,6 @@ dependencies:
   system:
     - iputils
     - net-tools
-  # system: bindep.txt
 
 images:
   base_image:
@@ -38,9 +37,5 @@ additional_build_steps:
   append_base:
     - RUN pip3 install --upgrade pip setuptools
 
-  # prepend_final: |
-  #   RUN whoami
-  #   RUN cat /etc/os-release
-  
   append_final:
-    - RUN ln -nfs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime 
+    - RUN ln -nfs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime

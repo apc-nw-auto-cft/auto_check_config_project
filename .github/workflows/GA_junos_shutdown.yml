@@ -25,14 +25,14 @@ jobs:
       #   password: ${{ secrets.GITHUB_TOKEN }}
       options: --user root
     steps:
-    #   - uses: actions/checkout@v2
-    #   - name: Login GitHub Packages
-    #     uses: docker/login-action@v1.13.0
-    #     with:
-    #       registry: ghcr.io
-    #       username: ${{ github.actor }}
-    #       password: ${{ secrets.GITHUB_TOKEN }}
-      
+      # - uses: actions/checkout@v2
+      # - name: Login GitHub Packages
+      #   uses: docker/login-action@v1.13.0
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Check my ip
         run: curl http://inet-ip.info/
 
@@ -45,9 +45,13 @@ jobs:
       - name: Connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
-          command: ansible-playbook -i project/inventory/inventory.yaml project/playbook/connectivity_check.yml
+          command: "\
+            ansible-playbook -i project/inventory/inventory.yaml \
+            project/playbook/connectivity_check.yml"
           max_attempts: 5
           retry_interval: 5
 
       - name: ansible test
-        run: ansible-playbook -i project/inventory/inventory.yaml project/playbook/junos_shutdown.yml
+        run: "\
+          ansible-playbook -i project/inventory/inventory.yaml \
+          project/playbook/junos_shutdown.yml"

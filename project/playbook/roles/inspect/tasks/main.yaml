@@ -35,7 +35,7 @@
     msg:
       - "command: {{ item.item.item.command }}"
       - "element: {{ item.item.item.element }}"
-      - "expect: {{ item.item.item.result[inspect_before_or_after] }}"
+      - "expect: {{ item.item.item.result[before_or_after] }}"
       - "actual: {{ item.matches[0][item.item.item.element] | trim }}"
   loop: "{{ res_xml.results }}"
   loop_control:
@@ -44,10 +44,13 @@
 - name: "Assert"
   ansible.builtin.assert:
     that:
-      item.matches[0][item.item.item.element] | trim == item.item.item.result[inspect_before_or_after]
+      - actual_status == expected_status
     quiet: true
+  vars:
+    actual_status: "{{ item.matches[0][item.item.item.element] | trim }}"
+    expected_status: "{{ item.item.item.result[before_or_after] }}"
   loop: "{{ res_xml.results }}"
   loop_control:
     label: " "
   when:
-    - item.item.item.result[inspect_before_or_after] != None
+    - item.item.item.result[before_or_after] != None
