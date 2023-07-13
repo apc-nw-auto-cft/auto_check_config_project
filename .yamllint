@@ -1,0 +1,8 @@
+---
+extends: default
+ignore:
+  - .venv
+  - /execution_environment/context
+rules:
+  truthy:
+    check-keys: false
