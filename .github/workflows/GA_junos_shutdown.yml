@@ -25,13 +25,6 @@ jobs:
       #   password: ${{ secrets.GITHUB_TOKEN }}
       options: --user root
     steps:
-      - name: Login to Github
-        run: pip freeze
-    #     with:
-    #       registry: ghcr.io
-    #       username: ${{ github.actor }}
-    #       password: ${{ secrets.GITHUB_TOKEN }}
-
     #   - uses: actions/checkout@v2
     #   - name: Login GitHub Packages
     #     uses: docker/login-action@v1.13.0
@@ -39,31 +32,25 @@ jobs:
     #       registry: ghcr.io
     #       username: ${{ github.actor }}
     #       password: ${{ secrets.GITHUB_TOKEN }}
-    #   - name: Docker push
-    #     uses: docker/build-push-action@v2.9.0
-    #     with:
-    #       context: .
-    #       pull: true
-    #       tags: ghcr.io/kojiro-kitamura/ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       
-      # - name: check my ip
-      #   run: curl http://inet-ip.info/
+      - name: check my ip
+        run: curl http://inet-ip.info/
 
-      # - name: checkout code
-      #   uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
 
-      # # - name: sleep
-      # #   run: sleep 60
+      # - name: sleep
+      #   run: sleep 60
 
-      # - name: connectivity_check
-      #   uses: corrupt952/retry-command@v1.0.7
-      #   with:
-      #     command: ansible-playbook -i inventory junos_shutdown.yml --tags "connectivity_check"
-      #     max_attempts: 5
-      #     retry_interval: 5
+      - name: connectivity_check
+        uses: corrupt952/retry-command@v1.0.7
+        with:
+          command: ansible-playbook -i inventory junos_shutdown.yml --tags "connectivity_check"
+          max_attempts: 5
+          retry_interval: 5
       
-      # - name: cat file
-      #   run: cat test.yml
+      - name: cat file
+        run: cat test.yml
 
-      # - name: ansible test
-      #   run: ansible-playbook -i inventory junos_shutdown.yml
+      - name: ansible test
+        run: ansible-playbook -i inventory junos_shutdown.yml
