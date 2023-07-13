@@ -31,6 +31,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Docker
+        run: |
+            docker pull ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       
       - name: check my ip
         run: curl http://inet-ip.info/
