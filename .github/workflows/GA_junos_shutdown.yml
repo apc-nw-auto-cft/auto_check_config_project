@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: approval
     container:
-      image: kaiuchida/ansible-execution-env:1.0
+      image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       options: --user root
     steps:
       - name: check my ip
