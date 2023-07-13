@@ -1,0 +1,57 @@
+---
+name: commit_and_inspect
+run-name: ${{ github.actor }} change metric
+on: 
+  push:
+    paths:
+      - 'project/material/*'
+
+jobs:
+  # check_my_ip:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: check my ip
+  #       run: curl http://inet-ip.info/
+
+  # approval:
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: test
+  #   steps:
+  #     - run: echo "waiting approval"
+
+  ansible_in_docker:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
+      # credentials:
+      #   username: ${{ github.actor }}
+      #   password: ${{ secrets.GITHUB_TOKEN }}
+      options: --user root
+    steps:
+    #   - uses: actions/checkout@v2
+    #   - name: Login GitHub Packages
+    #     uses: docker/login-action@v1.13.0
+    #     with:
+    #       registry: ghcr.io
+    #       username: ${{ github.actor }}
+    #       password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: check my ip
+        run: curl http://inet-ip.info/
+
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      # - name: sleep
+      #   run: sleep 60
+
+      - name: connectivity_check
+        uses: corrupt952/retry-command@v1.0.7
+        with:
+          command: ansible-playbook -i project/inventory/inventory.yaml project/playbook/connectivity_check.yml
+          max_attempts: 5
+          retry_interval: 5
+
+      - name: ansible test
+        run: ansible-playbook -i project/inventory/inventory.yaml project/playbook/commit_and_inspect.yaml
