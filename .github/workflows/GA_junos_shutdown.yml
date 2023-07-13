@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v2.9.0
         with:
           context: .
-          push: true
+          pull: true
           tags: ghcr.io/kojiro-kitamura/ghcr.io/apc-nw-auto-cft/auto_check_config_project/ee:1.2
       
       - name: check my ip
