@@ -13,7 +13,7 @@ ansible-navigator:
       help: false
 
   # ansible-lint:
-  #   config: ~/ansible-lint.yml
+  #   config: ~/ansible-lint.yaml
   #   lintables: ~/myproject/
 
   ansible-runner:

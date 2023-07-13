@@ -47,11 +47,11 @@ jobs:
         with:
           command: "\
             ansible-playbook -i project/inventory/inventory.yaml \
-            project/playbook/connectivity_check.yml"
+            project/playbook/connectivity_check.yaml"
           max_attempts: 5
           retry_interval: 5
 
       - name: ansible test
         run: "\
           ansible-playbook -i project/inventory/inventory.yaml \
-          project/playbook/junos_shutdown.yml"
+          project/playbook/junos_shutdown.yaml"
