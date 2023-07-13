@@ -1,12 +1,16 @@
 ---
-name: junos_shutdown
-run-name: ${{ github.actor }} is exec junos_shutdown
-on: [workflow_dispatch]
+name: commit_and_inspect
+run-name: ${{ github.actor }} config change
+on: 
+  push:
+    paths:
+      - 'project/material/*'
+
 jobs:
   # check_my_ip:
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: Check my ip
+  #     - name: check my ip
   #       run: curl http://inet-ip.info/
 
   # approval:
@@ -33,16 +37,16 @@ jobs:
     #       username: ${{ github.actor }}
     #       password: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Check my ip
+      - name: check my ip
         run: curl http://inet-ip.info/
 
-      - name: Checkout code
+      - name: checkout code
         uses: actions/checkout@v3
 
-      # - name: Sleep
+      # - name: sleep
       #   run: sleep 60
 
-      - name: Connectivity_check
+      - name: connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
           command: ansible-playbook -i project/inventory/inventory.yaml project/playbook/connectivity_check.yml
@@ -50,4 +54,4 @@ jobs:
           retry_interval: 5
 
       - name: ansible test
-        run: ansible-playbook -i project/inventory/inventory.yaml project/playbook/junos_shutdown.yml
+        run: ansible-playbook -i project/inventory/inventory.yaml project/playbook/commit_and_inspect.yaml
