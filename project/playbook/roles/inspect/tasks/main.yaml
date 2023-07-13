@@ -3,7 +3,7 @@
 #   ansible.builtin.debug:
 #     var: expect[inventory_hostname]
 
-- name: "debug show command"
+- name: "Debug show command"
   ansible.builtin.debug:
     msg: "{{ item.command }}"
   loop: "{{ expect[inventory_hostname] }}"
@@ -11,7 +11,7 @@
     label: " "
   delegate_to: localhost
 
-- name: "get show"
+- name: "Get show"
   junipernetworks.junos.junos_command:
     commands: "{{ item.command }}"
     display: xml
@@ -20,7 +20,7 @@
   loop_control:
     label: " "
 
-- name: "parse xml"
+- name: "Parse xml"
   community.general.xml:
     xmlstring: "{{ item.stdout[0] }}"
     xpath: "//{{ item.item.element }}"
@@ -30,24 +30,24 @@
     label: " "
   register: res_xml
 
-- name: "debug parsed xml"
+- name: "Debug parsed xml"
   ansible.builtin.debug:
-    msg: 
+    msg:
       - "command: {{ item.item.item.command }}"
       - "element: {{ item.item.item.element }}"
-      - "expect: {{ item.item.item.result[before_or_after] }}"
+      - "expect: {{ item.item.item.result[inspect_before_or_after] }}"
       - "actual: {{ item.matches[0][item.item.item.element] | trim }}"
   loop: "{{ res_xml.results }}"
   loop_control:
     label: " "
 
-- name: "assert"
+- name: "Assert"
   ansible.builtin.assert:
     that:
-      item.matches[0][item.item.item.element] | trim == item.item.item.result[before_or_after]
+      item.matches[0][item.item.item.element] | trim == item.item.item.result[inspect_before_or_after]
     quiet: true
   loop: "{{ res_xml.results }}"
   loop_control:
     label: " "
   when:
-    - item.item.item.result[before_or_after] != None
+    - item.item.item.result[inspect_before_or_after] != None

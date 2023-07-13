@@ -6,7 +6,7 @@ jobs:
   # check_my_ip:
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: check my ip
+  #     - name: Check my ip
   #       run: curl http://inet-ip.info/
 
   # approval:
@@ -33,16 +33,16 @@ jobs:
     #       username: ${{ github.actor }}
     #       password: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: check my ip
+      - name: Check my ip
         run: curl http://inet-ip.info/
 
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: sleep
+      # - name: Sleep
       #   run: sleep 60
 
-      - name: connectivity_check
+      - name: Connectivity_check
         uses: corrupt952/retry-command@v1.0.7
         with:
           command: ansible-playbook -i project/inventory/inventory.yaml project/playbook/connectivity_check.yml

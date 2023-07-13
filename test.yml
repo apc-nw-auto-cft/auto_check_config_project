@@ -1,8 +1,0 @@
----
-- name: "test"
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: "debug test"
-      ansible.builtin.debug:
-        msg: "hello"
