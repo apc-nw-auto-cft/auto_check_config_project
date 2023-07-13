@@ -30,7 +30,7 @@ jobs:
         with:
           registry: ghcr.io
           username: "uchida0411"
-          password: ${{ secrets.ec2 }}
+          password: ${{ secrets.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 }}
       
       - name: check my ip
         run: curl http://inet-ip.info/
