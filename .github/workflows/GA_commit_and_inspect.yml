@@ -1,6 +1,6 @@
 ---
 name: commit_and_inspect
-run-name: ${{ github.actor }} change metric
+run-name: ${{ github.actor }} config change
 on: 
   push:
     paths:
